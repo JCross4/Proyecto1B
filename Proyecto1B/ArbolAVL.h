@@ -12,7 +12,7 @@ struct Nodo
 };
 
 //obtiene el maximo de dos numeros
-int max(int a, int b);
+//int max(int a, int b);
 
 //obtiene la altura del arbol
 int altura(struct Nodo* N)
@@ -21,13 +21,6 @@ int altura(struct Nodo* N)
 		return 0;
 	return N->altura;
 }
-
-
-int max(int a, int b)
-{
-	return (a > b) ? a : b;
-}
-
 
 struct Nodo* nuevoNodo(int llave)
 {

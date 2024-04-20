@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="ArbolAVL.h" />
     <ClInclude Include="BTree.h" />
+    <ClInclude Include="ListaVotantes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
