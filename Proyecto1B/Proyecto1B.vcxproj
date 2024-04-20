@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Proyecto1B.cpp" />
+    <ClCompile Include="Proyecto 1B.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArbolAVL.h" />
