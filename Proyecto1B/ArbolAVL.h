@@ -6,6 +6,14 @@
 struct Nodo
 {
 	int llave;
+	char codElec[7];
+	char nombre[31];
+	char sexo;
+	char fecha[9];
+	char numjun[6];
+	char pApellido[27];
+	char sApellido[27];
+
 	struct Nodo* izq;
 	struct Nodo* derecha;
 	int altura;
@@ -22,11 +30,36 @@ int altura(struct Nodo* N)
 	return N->altura;
 }
 
-struct Nodo* nuevoNodo(int llave)
+struct Nodo* nuevoNodo(int llave1, char codElec[], char nombre[], char sexo, char fecha[], char numjun[], char pApellido[], char sApellido[])
 {
 	struct Nodo* Nodo = (struct Nodo*)
 		malloc(sizeof(struct Nodo));
-	Nodo->llave = llave;
+	Nodo->llave = llave1;
+	for (int nom = 0; nom < 6; nom++) {
+		Nodo->codElec[nom] = codElec[nom];
+	}
+	Nodo->codElec[6] = '\0';
+	for (int nom = 0; nom < 8; nom++) {
+		Nodo->fecha[nom] = fecha[nom];
+	}
+	Nodo->fecha[8] = '\0';
+	Nodo->sexo = sexo;
+	for (int nom = 0; nom < 30; nom++) {
+		Nodo->nombre[nom] = nombre[nom];
+	}
+	Nodo->nombre[30] = '\0';
+	for (int nom = 0; nom < 5; nom++) {
+		Nodo->numjun[nom] = numjun[nom];
+	}
+	Nodo->numjun[5] = '\0';
+	for (int nom = 0; nom < 26; nom++) {
+		Nodo->pApellido[nom] = pApellido[nom];
+	}
+	Nodo->pApellido[26] = '\0';
+	for (int nom = 0; nom < 26; nom++) {
+		Nodo->sApellido[nom] = sApellido[nom];
+	}
+	Nodo->sApellido[26] = '\0';
 	Nodo->izq = NULL;
 	Nodo->derecha = NULL;
 	Nodo->altura = 1;  //nuevonodo es agregado como hoja
@@ -78,16 +111,16 @@ int obtenerbalance(struct Nodo* N)
 }
 
 
-struct Nodo* insertarAVL(struct Nodo* Nodo, int llave)
+struct Nodo* insertarAVL(struct Nodo* & Nodo, int llave, char codElec[], char nombre[], char sexo, char fecha[], char numjun[], char pApellido[], char sApellido[])
 {
 	/* 1. Insercion normal */
 	if (Nodo == NULL)
-		return(nuevoNodo(llave));
+		return(nuevoNodo(llave, codElec, nombre, sexo, fecha, numjun, pApellido, sApellido));
 
 	if (llave < Nodo->llave)
-		Nodo->izq = insertarAVL(Nodo->izq, llave);
+		Nodo->izq = insertarAVL(Nodo->izq, llave, codElec, nombre, sexo, fecha, numjun, pApellido, sApellido);
 	else if (llave > Nodo->llave)
-		Nodo->derecha = insertarAVL(Nodo->derecha, llave);
+		Nodo->derecha = insertarAVL(Nodo->derecha, llave, codElec, nombre, sexo, fecha, numjun, pApellido, sApellido);
 	else // no se permiten llaves iguales
 		return Nodo;
 
@@ -132,7 +165,20 @@ void preOrder(struct Nodo* root)
 	if (root != NULL)
 	{
 		printf("%d ", root->llave);
+		cout << root->nombre << endl;
 		preOrder(root->izq);
 		preOrder(root->derecha);
 	}
+}
+
+Nodo* buscarAVL(struct Nodo* root, int buscar)
+{
+	if (root == NULL)
+		return NULL;
+	if (buscar < root->llave)
+		return buscarAVL(root->izq, buscar);
+	else if (buscar > root->llave)
+		return buscarAVL(root->derecha, buscar);
+	else 
+		return root;
 }

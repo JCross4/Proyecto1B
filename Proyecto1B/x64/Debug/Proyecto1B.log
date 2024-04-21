@@ -1,3 +1,6 @@
 ﻿  Proyecto 1B.cpp
-C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(7,13): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
+C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(20,20): warning C4244: '=': conversión de 'double' a 'time_t'; posible pérdida de datos
+C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(29,21): warning C4244: '=': conversión de 'double' a 'time_t'; posible pérdida de datos
+C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(38,23): warning C4244: '=': conversión de 'double' a 'time_t'; posible pérdida de datos
+C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(48,13): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
   Proyecto1B.vcxproj -> C:\Users\23jic\source\repos\Proyecto1B\x64\Debug\Proyecto1B.exe

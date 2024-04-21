@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArbolAVL.h" />
+    <ClInclude Include="ArbolBB.h" />
     <ClInclude Include="BTree.h" />
     <ClInclude Include="ListaVotantes.h" />
   </ItemGroup>
