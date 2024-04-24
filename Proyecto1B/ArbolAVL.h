@@ -182,3 +182,7 @@ Nodo* buscarAVL(struct Nodo* root, int buscar)
 	else 
 		return root;
 }
+
+void liberarAVL(struct Nodo* rpot) {
+
+}

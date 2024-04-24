@@ -731,6 +731,26 @@ bool busqueda(int val, int* pos, NodoBtree* minodo) {
 	return result;
 }
 
+int contarElementos(NodoBtree* minodo) {
+	int i;
+	int resultado = 0;
+	if (minodo) {
+		for (i = 0; i < minodo->count; i++) {
+			resultado += contarElementos(minodo->link[i]);
+			resultado += 1;
+		}
+		resultado += contarElementos(minodo->link[i]);
+	}
+	return resultado;
+}
+
+void liberarBtree(NodoBtree* raiz) {
+	for (int i = 1; i <= contarElementos(raiz); i++)
+	{
+		borrado(raiz->val[1], raiz, raiz);
+	}
+}
+
 // B-Tree desplegar
 void desplegar(NodoBtree* minodo) {
 	int i;
@@ -743,3 +763,4 @@ void desplegar(NodoBtree* minodo) {
 		desplegar(minodo->link[i]);
 	}
 }
+
