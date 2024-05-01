@@ -1,7 +1,9 @@
 #pragma once
 #include<stdio.h>
 #include<stdlib.h>
-
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 struct Nodo
 {
@@ -157,6 +159,31 @@ struct Nodo* insertarAVL(struct Nodo* & Nodo, int llave, char codElec[], char no
 
 
 	return Nodo;
+}
+
+void preOrderAVLArchivoAux(struct Nodo* raiz, ofstream &archivo) {
+	if (raiz != NULL)
+	{
+		archivo << raiz->llave << "	|	 ";
+		archivo << raiz->nombre;
+		archivo << raiz->pApellido << endl;
+		preOrderAVLArchivoAux(raiz->izq, archivo);
+		preOrderAVLArchivoAux(raiz->derecha, archivo);
+	}
+}
+
+void preOrderAVLArchivo(struct Nodo* raiz) {
+	ofstream archivo;
+	archivo.open("Listado AVL.txt");
+	if (raiz != NULL)
+	{
+		archivo << raiz->llave << "	|	 ";
+		archivo << raiz->nombre;
+		archivo << raiz->pApellido << endl;
+		preOrderAVLArchivoAux(raiz->izq, archivo);
+		preOrderAVLArchivoAux(raiz->derecha, archivo);
+	}
+	archivo.close();
 }
 
 //recorido

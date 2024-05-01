@@ -12,7 +12,6 @@ void cargarEstructuras(PtrT_Votante listaVotantes, Nodo* & arbolAVL, NodoBB* & a
 	inicio = time(NULL);
 	while (votante) {
 		int cedula = atoi(votante->cedula);
-		if (cedula < 102020582)
 			Insertar(arbolBB, cedula, votante->codelec, votante->nombre, votante->sexo, votante->fecha, votante->numjun, votante->papellido, votante->sapellido);
 		votante = votante->PtrSiguiente;
 	}

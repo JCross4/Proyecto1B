@@ -25,14 +25,31 @@ bool Insertar(NodoBB*& Raiz, int cualllave, char codElec[], char nombre[], char 
 	{
 		Raiz = new(NodoBB);
 		Raiz->llave = cualllave;
-		/*Raiz->codElec[0 - 6] = codElec[0 - 6];
-		Raiz->nombre[0 - 30] = nombre[0 - 30];
+		for (int nom = 0; nom < 6; nom++) {
+			Raiz->codElec[nom] = codElec[nom];
+		}
+		Raiz->codElec[6] = '\0';
+		for (int nom = 0; nom < 8; nom++) {
+			Raiz->fecha[nom] = fecha[nom];
+		}
+		Raiz->fecha[8] = '\0';
 		Raiz->sexo = sexo;
-		Raiz->fecha[0 - 8] = fecha[0 - 8];
-		Raiz->numjun[0 - 5] = numjun[0 - 5];
-		Raiz->pApellido[0 - 26] = pApellido[0 - 26];
-		Raiz->sApellido[0 - 26] = sApellido[0 - 26];
-		*/
+		for (int nom = 0; nom < 30; nom++) {
+			Raiz->nombre[nom] = nombre[nom];
+		}
+		Raiz->nombre[30] = '\0';
+		for (int nom = 0; nom < 5; nom++) {
+			Raiz->numjun[nom] = numjun[nom];
+		}
+		Raiz->numjun[5] = '\0';
+		for (int nom = 0; nom < 26; nom++) {
+			Raiz->pApellido[nom] = pApellido[nom];
+		}
+		Raiz->pApellido[26] = '\0';
+		for (int nom = 0; nom < 26; nom++) {
+			Raiz->sApellido[nom] = sApellido[nom];
+		}
+		Raiz->sApellido[26] = '\0';
 		Raiz->HijoIzquierdo = NULL;
 		Raiz->HijoDerecho = NULL;
 		return true;
@@ -71,6 +88,30 @@ NodoBB* Buscar(NodoBB* Raiz, int cualllave)
 		else
 			if (cualllave < Raiz->llave) return Buscar(Raiz->HijoIzquierdo, cualllave);
 			else return Buscar(Raiz->HijoDerecho, cualllave);
+	}
+}
+
+void preOrdenBBArchivoAux(NodoBB* raiz, ofstream& archivo) {
+	if (raiz != NULL)
+	{
+		archivo << raiz->llave << "	 |	 ";
+		archivo << raiz->nombre;
+		archivo << raiz->pApellido << endl;
+		preOrdenBBArchivoAux(raiz->HijoIzquierdo, archivo);
+		preOrdenBBArchivoAux(raiz->HijoDerecho, archivo);
+	}
+}
+
+void preOrdenBBArchivo(NodoBB* raiz) {
+	ofstream archivo;
+	archivo.open("Listado BB.txt");
+	if (raiz != NULL)
+	{
+		archivo << raiz->llave << "	 |	 ";
+		archivo << raiz->nombre;
+		archivo << raiz->pApellido << endl;
+		preOrdenBBArchivoAux(raiz->HijoIzquierdo, archivo);
+		preOrdenBBArchivoAux(raiz->HijoDerecho, archivo);
 	}
 }
 
