@@ -113,6 +113,7 @@ void preOrdenBBArchivo(NodoBB* raiz) {
 		preOrdenBBArchivoAux(raiz->HijoIzquierdo, archivo);
 		preOrdenBBArchivoAux(raiz->HijoDerecho, archivo);
 	}
+	archivo.close();
 }
 
 void PreOrdenRID(NodoBB* Raiz)

@@ -124,9 +124,15 @@ void main() {
 	inicializarvotantes(ListaV);
 	cout << "Por favor espere mientras se carga el Padron" << endl;
 	CargarVotantes(ListaV);
-	cargarEstructuras(ListaV, ArbolAVL, ArbolBB, BTree);
-	cout << "Se cargaron estructuras" << endl;
 	
+	/*Menú
+	Opcion 1. Cargar datos
+	Opcion 2. Listar datos
+	Opcion 3. Busqueda
+	Opcion 4. Liberar datos
+	Opcion 5. Reporte
+	*/
+
 	LiberarVotantes(ListaV);
 
 	cout << "Finalizado" << endl;

@@ -751,6 +751,35 @@ void liberarBtree(NodoBtree* raiz) {
 	}
 }
 
+void desplegarArchivoAux(NodoBtree* nodo, ofstream& archivo) {
+	int i;
+	if (nodo) {
+		for (i = 0; i < nodo->count; i++) {
+			desplegarArchivoAux(nodo->link[i], archivo);
+			archivo << nodo->val[i + 1] << '	|	 ';
+			archivo << nodo->nombre[i + 1];
+			archivo << nodo->pApellido[i + 1] << endl;
+		}
+		desplegarArchivoAux(nodo->link[i], archivo);
+	}
+}
+
+void desplegarArchivo(NodoBtree* nodo) {
+	int i;
+	ofstream archivo;
+	archivo.open("Listado BTree.txt");
+	if (nodo) {
+		for (i = 0; i < nodo->count; i++) {
+			desplegarArchivoAux(nodo->link[i], archivo);
+			archivo << nodo->val[i + 1] << '	|	 ';
+			archivo << nodo->nombre[i + 1];
+			archivo << nodo->pApellido[i + 1] << endl;
+		}
+		desplegarArchivoAux(nodo->link[i], archivo);
+	}
+	archivo.close();
+}
+
 // B-Tree desplegar
 void desplegar(NodoBtree* minodo) {
 	int i;

@@ -1,5 +1,6 @@
 ﻿  Proyecto 1B.cpp
-C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(87,17): warning C4101: 'fin': variable local sin referencia
-C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(87,9): warning C4101: 'inicio': variable local sin referencia
-C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(93,13): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
+C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(91,17): warning C4101: 'fin': variable local sin referencia
+C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(91,9): warning C4101: 'inicio': variable local sin referencia
+C:\Users\23jic\source\repos\Proyecto1B\Proyecto1B\Proyecto 1B.cpp(119,13): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
+  LINK : no se encontró C:\Users\23jic\source\repos\Proyecto1B\x64\Debug\Proyecto1B.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
   Proyecto1B.vcxproj -> C:\Users\23jic\source\repos\Proyecto1B\x64\Debug\Proyecto1B.exe

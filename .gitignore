@@ -5,3 +5,6 @@
 /.vs/Proyecto1B
 /Proyecto1B/PADRON_COMPLETO.txt
 *.txt
+/x64/Debug/Proyecto1B.exe
+/x64/Debug/Proyecto1B.pdb
+/Proyecto1B/x64/Debug/Proyecto1B.tlog/link.read.1.tlog
