@@ -3,7 +3,7 @@
 #include "BTree.h"
 #include "ArbolBB.h"
 using namespace std;
-double cargaBB = 0, cargaAVL = 0, cargaBtree = 0, listaBB = 0, listaAVL = 0, listaBTree = 0, buscaBB = 0, buscaAVL = 0, buscaBtree = 0;
+double cargaBB = 0, cargaAVL = 0, cargaBtree = 0, listaBB = 0, listaAVL = 0, listaBTree = 0, buscaBB = 0, buscaAVL = 0, buscaBtree = 0, liberaBB = 0;
 
 //Función para cargar los arboles AVL, BB y BTree a partir de la lista
 void cargarEstructuras(PtrT_Votante listaVotantes, Nodo* & arbolAVL, NodoBB* & arbolBB, NodoBtree* & btree) {
@@ -88,8 +88,17 @@ void buscarEstructuras(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& arb
 //Función que libera los arboles y toma el tiempo
 void liberarEstructuras(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& arbolBB, NodoBtree*& btree) {
 	time_t inicio, fin;
+	inicio = time(NULL);
+	PodarHojas(arbolBB);
+	fin = time(NULL);
+	liberaBB = difftime(fin,inicio);
+	inicio = time(NULL);
+	liberarAVL(arbolAVL);
+	fin = time(NULL);
+	cout << "Liberados" << endl;
 
 	LiberarVotantes(listaVotantes);
+	system("pause");
 	//#TODO
 }
 
@@ -125,13 +134,40 @@ void main() {
 	cout << "Por favor espere mientras se carga el Padron" << endl;
 	CargarVotantes(ListaV);
 	
-	/*Menú
-	Opcion 1. Cargar datos
-	Opcion 2. Listar datos
-	Opcion 3. Busqueda
-	Opcion 4. Liberar datos
-	Opcion 5. Reporte
-	*/
+	while (opcion != 6) {
+		cout << "\nMenu:\n";
+		cout << "1. Cargar datos\n";
+		cout << "2. Listar datos\n";
+		cout << "3. Buscar\n";
+		cout << "4. Liberar datos\n";
+		cout << "5. Reporte\n";
+		cout << "6. Salir\n";
+		cout << "Seleccione una opcion: ";
+		cin >> opcion;
+
+		switch (opcion) {
+		case 1:
+			cargarEstructuras(ListaV, ArbolAVL, ArbolBB, BTree);
+			break;
+		case 2:
+			listarEstructuras(ListaV, ArbolAVL, ArbolBB, BTree);
+			break;
+		case 3:
+			buscarEstructuras(ListaV, ArbolAVL, ArbolBB, BTree);
+			break;
+		case 4:
+			liberarEstructuras(ListaV, ArbolAVL, ArbolBB, BTree);
+			break;
+		case 5:
+			reporte();
+			break;
+		case 6:
+			cout << "Saliendo del programa...\n";
+			break;
+		default:
+			cout << "Opcion no valida. Intente de nuevo.\n";
+		}
+	}
 
 	LiberarVotantes(ListaV);
 

@@ -210,6 +210,20 @@ Nodo* buscarAVL(struct Nodo* root, int buscar)
 		return root;
 }
 
-void liberarAVL(struct Nodo* rpot) {
+void elimina(Nodo* & raiz)
+{
+	if (raiz == NULL) return;
 
+		elimina(raiz->izq);
+		elimina(raiz->derecha);
+}
+
+void liberarAVL(Nodo* raiz) {
+	if (raiz != NULL)
+	{
+		liberarAVL(raiz->izq);
+		liberarAVL(raiz->derecha);
+		printf("Borro : %i \n", raiz->llave);
+		delete(raiz); raiz = NULL;
+	}
 }
