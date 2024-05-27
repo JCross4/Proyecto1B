@@ -223,7 +223,6 @@ void liberarAVL(Nodo* raiz) {
 	{
 		liberarAVL(raiz->izq);
 		liberarAVL(raiz->derecha);
-		printf("Borro : %i \n", raiz->llave);
 		delete(raiz); raiz = NULL;
 	}
 }

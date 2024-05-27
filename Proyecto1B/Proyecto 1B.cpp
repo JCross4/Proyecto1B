@@ -3,7 +3,7 @@
 #include "BTree.h"
 #include "ArbolBB.h"
 using namespace std;
-double cargaBB = 0, cargaAVL = 0, cargaBtree = 0, listaBB = 0, listaAVL = 0, listaBTree = 0, buscaBB = 0, buscaAVL = 0, buscaBtree = 0, liberaBB = 0;
+double cargaBB = 0, cargaAVL = 0, cargaBtree = 0, listaBB = 0, listaAVL = 0, listaBTree = 0, buscaBB = 0, buscaAVL = 0, buscaBtree = 0, liberaBB = 0, liberaAVL = 0;
 
 //Función para cargar los arboles AVL, BB y BTree a partir de la lista
 void cargarEstructuras(PtrT_Votante listaVotantes, Nodo* & arbolAVL, NodoBB* & arbolBB, NodoBtree* & btree) {
@@ -95,6 +95,7 @@ void liberarEstructuras(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& ar
 	inicio = time(NULL);
 	liberarAVL(arbolAVL);
 	fin = time(NULL);
+	liberaAVL = difftime(fin, inicio);
 	cout << "Liberados" << endl;
 
 	LiberarVotantes(listaVotantes);
@@ -104,17 +105,19 @@ void liberarEstructuras(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& ar
 
 //Función de reporte general
 void reporte() {
-	cout << "Reporte de tiempos" << endl;
+	cout << "\nReporte de tiempos" << endl;
 	cout << "Arbol Binario de Busqueda: ";
 	cout << "Carga del arbol: " << cargaBB << endl;
 	cout << "Listado del arbol: " << listaBB << endl;
 	cout << "Busqueda en el arbol: " << buscaBB << endl;
+	cout << "Borrado del arbol: " << liberaBB << endl;
 
 	cout << endl;
 	cout << "Arbol AVL: ";
 	cout << "Carga del arbol: " << cargaAVL << endl;
 	cout << "Listado del arbol: " << listaAVL << endl;
 	cout << "Busqueda en el arbol: " << buscaAVL << endl;
+	cout << "Borrado del arbol: " << liberaAVL << endl;
 
 	cout << endl;
 	cout << "Arbol BTree: ";
