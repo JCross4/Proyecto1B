@@ -169,6 +169,31 @@ void PartirNodo(int val, char codelec[], char nombre[], char sexo, char fecha[],
 		Colocarnodo(val, codelec, nombre, sexo, fecha, numjun, pApellido, sApellido, pos - median, *NuevoNodo, hijo);
 	}
 	*pval = node->val[node->count];
+	for (int nom = 0; nom < 6; nom++) {
+		codelec[nom] = node->codElec[node->count][nom];
+	}
+	codelec[6] = '\0';
+	for (int nom = 0; nom < 8; nom++) {
+		fecha[nom] = node->fecha[node->count][nom];
+	}
+	fecha[8] = '\0';
+	for (int nom = 0; nom < 30; nom++) {
+		nombre[nom] = node->nombre[node->count][nom];
+	}
+	nombre[30] = '\0';
+	sexo = sexo;
+	for (int nom = 0; nom < 5; nom++) {
+		numjun[nom] = node->numjun[node->count][nom];
+	}
+	numjun[5] = '\0';
+	for (int nom = 0; nom < 26; nom++) {
+		pApellido[nom] = node->pApellido[node->count][nom];
+	}
+	pApellido[26] = '\0';
+	for (int nom = 0; nom < 26; nom++) {
+		sApellido[nom] = node->sApellido[node->count][nom];
+	}
+	sApellido[26] = '\0';
 	(*NuevoNodo)->link[0] = node->link[node->count];
 	node->count--;
 }
@@ -197,11 +222,11 @@ int SetValorNodo(int val, char codelec[], char nombre[], char sexo, char fecha[]
 		}
 		inumjun[5] = '\0';
 		for (int nom = 0; nom < 26; nom++) {
-			ipApellido[nom] = ipApellido[nom];
+			ipApellido[nom] = pApellido[nom];
 		}
 		ipApellido[26] = '\0';
 		for (int nom = 0; nom < 26; nom++) {
-			isApellido[nom] = isApellido[nom];
+			isApellido[nom] = sApellido[nom];
 		}
 		isApellido[26] = '\0';
 		*hijo = NULL;

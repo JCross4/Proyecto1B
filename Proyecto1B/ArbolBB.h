@@ -71,7 +71,6 @@ void PodarHojas(NodoBB*& Raiz)
 	{
 		PodarHojas(Raiz->HijoIzquierdo);
 		PodarHojas(Raiz->HijoDerecho);
-		printf("Borro : %i \n", Raiz->llave);
 		delete(Raiz); Raiz = NULL;
 	}
 }

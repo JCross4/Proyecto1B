@@ -47,17 +47,17 @@ void cargarEstructuras(PtrT_Votante listaVotantes, Nodo* & arbolAVL, NodoBB* & a
 void listarEstructuras(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& arbolBB, NodoBtree*& btree) {
 	time_t inicio, fin;
 	inicio = time(NULL);
-	//preOrder(ArbolAVL);
+	preOrderAVLArchivo(arbolAVL);
 	fin = time(NULL);
 	listaAVL = difftime(fin, inicio);
 	system("pause");
 	inicio = time(NULL);
-	//desplegar(BTree);
+	desplegarArchivo(btree);
 	fin = time(NULL);
 	listaBTree = difftime(fin, inicio);
 	system("pause");
 	inicio = time(NULL);
-	//PreOrdenRID(arbolBB);
+	preOrdenBBArchivo(arbolBB);
 	fin = time(NULL);
 	listaBB = difftime(fin, inicio);
 	system("pause");
