@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <conio.h>
 #include <cctype> 
@@ -90,6 +91,21 @@ void ImprimirPadron(PtrT_Votante ListaV) {
 		cout << "------------------------------------------------------------------------" << endl;
 		actual = actual->PtrSiguiente;
 	}
+}
+
+void listarArchivoVotantes(PtrT_Votante listaV) {
+		ofstream archivo;
+		PtrT_Votante actual = listaV;
+		archivo.open("Listado ListaVotantes.txt");
+		while (actual != NULL)
+		{
+			archivo << actual->cedula << "	 |	 ";
+			archivo << actual->nombre;
+			archivo << actual->papellido << endl;
+			actual = actual->PtrSiguiente;
+		}
+		archivo.close();
+	
 }
 
 //Funcion para cargar los votantes, se encarga de tomar cada una de las lineas

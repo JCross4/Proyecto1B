@@ -749,10 +749,6 @@ bool busqueda(int val, int* pos, NodoBtree* minodo) {
 		}
 	}
 	result = busqueda(val, pos, minodo->link[*pos]);
-	if (!result){
-		cout << "No se ha encontrado el Nodo\n";
-	system("pause");
-}
 	return result;
 }
 

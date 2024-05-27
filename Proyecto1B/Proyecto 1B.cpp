@@ -1,9 +1,15 @@
-﻿#include "ListaVotantes.h"
+﻿//Proyecto 1B
+//Estructuras de Datos
+//José Calderón Barquero y José Julián Gómez
+
+
+
+#include "ListaVotantes.h"
 #include "ArbolAVL.h"
 #include "BTree.h"
 #include "ArbolBB.h"
 using namespace std;
-double cargaBB = 0, cargaAVL = 0, cargaBtree = 0, listaBB = 0, listaAVL = 0, listaBTree = 0, buscaBB = 0, buscaAVL = 0, buscaBtree = 0, liberaBB = 0, liberaAVL = 0;
+double cargaBB = 0, cargaAVL = 0, cargaBtree = 0, cargaLista = 0, listaBB = 0, listaAVL = 0, listaBTree = 0, listaLista = 0, buscaBB = 0, buscaAVL = 0, buscaBtree = 0, buscaLista = 0, liberaBB = 0, liberaAVL = 0, liberaLista = 0;
 
 //Función para cargar los arboles AVL, BB y BTree a partir de la lista
 void cargarEstructuras(PtrT_Votante listaVotantes, Nodo* & arbolAVL, NodoBB* & arbolBB, NodoBtree* & btree) {
@@ -45,22 +51,29 @@ void cargarEstructuras(PtrT_Votante listaVotantes, Nodo* & arbolAVL, NodoBB* & a
 
 //Función que lista los elementos de cada arbol y toma el tiempo
 void listarEstructuras(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& arbolBB, NodoBtree*& btree) {
+	cout << "Listando" << endl;
 	time_t inicio, fin;
 	inicio = time(NULL);
 	preOrderAVLArchivo(arbolAVL);
 	fin = time(NULL);
+	cout << "Listado AVL completado" << endl;
 	listaAVL = difftime(fin, inicio);
-	system("pause");
 	inicio = time(NULL);
 	desplegarArchivo(btree);
 	fin = time(NULL);
+	cout << "Listado BTree completado" << endl;
 	listaBTree = difftime(fin, inicio);
-	system("pause");
 	inicio = time(NULL);
 	preOrdenBBArchivo(arbolBB);
 	fin = time(NULL);
+	cout << "Listado Arbol Binario de Busqueda completado" << endl;
 	listaBB = difftime(fin, inicio);
-	system("pause");
+	inicio = time(NULL);
+	listarArchivoVotantes(listaVotantes);
+	fin = time(NULL);
+	cout << "Listado Lista Votantes completado" << endl;
+	listaLista = difftime(fin, inicio);
+	cout << "Fin del listado" << endl;
 }
 
 //Función que busca un elemento en cada arbol y toma el tiempo
@@ -83,10 +96,18 @@ void buscarEstructuras(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& arb
 	busqueda(cedBuscar, &pos, btree);
 	fin = time(NULL);
 	buscaBtree = difftime(fin, inicio);
+	string cedStr = to_string(cedBuscar);
+	char* cedChar = &cedStr[0];
+	inicio = time(NULL);
+	BuscarVotante(listaVotantes, cedChar);
+	fin = time(NULL);
+	buscaLista = difftime(fin, inicio);
+
 }
 
 //Función que libera los arboles y toma el tiempo
 void liberarEstructuras(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& arbolBB, NodoBtree*& btree) {
+	cout << "Liberando" << endl;
 	time_t inicio, fin;
 	inicio = time(NULL);
 	PodarHojas(arbolBB);
@@ -97,10 +118,11 @@ void liberarEstructuras(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& ar
 	fin = time(NULL);
 	liberaAVL = difftime(fin, inicio);
 	cout << "Liberados" << endl;
-
+	inicio = time(NULL);
 	LiberarVotantes(listaVotantes);
+	fin = time(NULL);
+	liberaLista = difftime(fin, inicio);
 	system("pause");
-	//#TODO
 }
 
 //Función de reporte general
@@ -124,8 +146,24 @@ void reporte() {
 	cout << "Carga del arbol: " << cargaBtree << endl;
 	cout << "Listado del arbol: " << listaBTree << endl;
 	cout << "Busqueda en el arbol: " << buscaBtree << endl;
+
+	cout << endl;
+	cout << "Lista enlazada: ";
+	cout << "Carga de la lista: " << cargaLista << endl;
+	cout << "Listado de la lista: " << listaLista << endl;
+	cout << "Busqueda en la lista: " << buscaLista << endl;
+	cout << "Borrado de la lista: " << liberaLista << endl;
 }
 
+void general(PtrT_Votante listaVotantes, Nodo*& arbolAVL, NodoBB*& arbolBB, NodoBtree*& btree) {
+	cout << "Modo general iniciado" << endl;
+	cargarEstructuras(listaVotantes, arbolAVL, arbolBB, btree);
+	listarEstructuras(listaVotantes, arbolAVL, arbolBB, btree);
+	buscarEstructuras(listaVotantes, arbolAVL, arbolBB, btree);
+	liberarEstructuras(listaVotantes, arbolAVL, arbolBB, btree);
+	reporte();
+	cout << "Modo general finalizado" << endl;
+}
 
 void main() {
 	int opcion = 0;
@@ -135,16 +173,21 @@ void main() {
 	NodoBtree* BTree = NULL;
 	inicializarvotantes(ListaV);
 	cout << "Por favor espere mientras se carga el Padron" << endl;
+	time_t inicio, fin;
+	inicio = time(NULL);
 	CargarVotantes(ListaV);
-	
-	while (opcion != 6) {
+	fin = time(NULL);
+	cargaLista = difftime(fin, inicio);
+
+	while (opcion != 7) {
 		cout << "\nMenu:\n";
 		cout << "1. Cargar datos\n";
 		cout << "2. Listar datos\n";
 		cout << "3. Buscar\n";
 		cout << "4. Liberar datos\n";
 		cout << "5. Reporte\n";
-		cout << "6. Salir\n";
+		cout << "6. Modo general\n";
+		cout << "7. Salir\n";
 		cout << "Seleccione una opcion: ";
 		cin >> opcion;
 
@@ -165,6 +208,9 @@ void main() {
 			reporte();
 			break;
 		case 6:
+			general(ListaV, ArbolAVL, ArbolBB, BTree);
+			break;
+		case 7:
 			cout << "Saliendo del programa...\n";
 			break;
 		default:
@@ -172,9 +218,7 @@ void main() {
 		}
 	}
 
-	LiberarVotantes(ListaV);
-
-	cout << "Finalizado" << endl;
+	cout << "\nFinalizado" << endl;
 
 	system("pause");
 
